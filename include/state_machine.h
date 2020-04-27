@@ -1,7 +1,7 @@
 
 
 
-int32_t last_trig = -31000;
+int32_t last_trig = -999000;
 
 
 static inline void st_set_holding() {

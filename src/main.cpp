@@ -5,6 +5,7 @@
 #include "sensor.h"
 #include "wifi_util.h"
 #include "state_machine.h"
+#include "blynk_module.h"
 
 void setup() {
   drive_init();
@@ -12,11 +13,19 @@ void setup() {
   led_init();
   sensor_init();
   wifi_init();
+  blynk_init();
   Serial.println("Started");
  }
 
 void loop() {
   wifi_handle();
+
+
+  /**
+   * 
+   * อัพเดทค่า Blynk กับทาง Server
+   */
+      Blynk.run();
 
 
   if(drive_but_pressed()) {
@@ -41,6 +50,17 @@ void loop() {
       led_flash(LED_G, 500);
       drive_set(LOW);
     }
+  }
+
+
+
+
+  /**
+   * 
+   * 
+   */
+  if(_accumulated_time_inited && _number_used_inited) {
+    blynk_update_data();
   }
   
  }

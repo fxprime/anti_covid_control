@@ -8,9 +8,11 @@ void drive_init() {
 }
 
 static inline bool drive_but_pressed() {
-    return !digitalRead(DRIVE_BUT);
+    return !digitalRead(DRIVE_BUT) || _run_by_app ;
 }
 
 static inline void drive_set(const bool& val ) {
     digitalWrite(DRIVE_PIN, val);
+    _is_running = val;
+    
 }

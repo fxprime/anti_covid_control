@@ -11,6 +11,12 @@ void sensor_init() {
 static inline bool sensor_get() {
     static int val_count = 0;
     bool val = digitalRead(SENS_PIN);
+
+    /**
+     * Test only
+     * */
+    // val = SENS_UNDETECTED;
+
     if(val == SENS_DETECTED) {
         val_count ++;
     }else{
